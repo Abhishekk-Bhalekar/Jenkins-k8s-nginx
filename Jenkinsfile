@@ -31,8 +31,8 @@ pipeline {
       }
       stage('modify manifest tag') {
       steps {
-        sh "sed -i -e 's%abhishek5963/jenkins_k8s_nginx:.*%abhishek5963/jenkins_k8s_nginx:${BUILD_NUMBER}%g' mainfests files/deployment.yml"
-        sh 'cat mainfests files/deployment.yml'
+        sh "sed -i -e 's%abhishek5963/jenkins_k8s_nginx:.*%abhishek5963/jenkins_k8s_nginx:${BUILD_NUMBER}%g' mainfestfiles/deployment.yml"
+        sh 'cat mainfestfiles/deployment.yml'
       }
     }
      stage('Deploy to K8s') {
@@ -40,12 +40,11 @@ pipeline {
         script {
           sh "cat mainfests files/deployment.yml"
           sh "minikube delete --all"
-          sh "./setup.sh"
           sh "kubectl cluster-info"
           sh "sleep 10"
-          sh "kubectl create -f mainfests files/deployment.yml"
-          sh "kubectl create -f mainfests files/service-file.yml"
-          sh "kubectl create -f mainfests files/configmaps.yml"
+          sh "kubectl create -f mainfestfiles/deployment.yml"
+          sh "kubectl create -f mainfestfiles/service-file.yml"
+          sh "kubectl create -f mainfestfiles/configmaps.yml"
           sh "kubectl get pods"
           sh "sleep 60"
           sh "minikube service nginx-service"
