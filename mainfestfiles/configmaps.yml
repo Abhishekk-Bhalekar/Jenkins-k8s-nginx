@@ -12,7 +12,7 @@ data:
         index index.html index.htm;
 
         server {
-            listen 80;
+            listen 8080;
 
             root /usr/share/doc/nginx/html/; 
 
