@@ -18,4 +18,4 @@ spec:
         - name: nginx
           image: abhishek5963/jenkins_k8s_nginx:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80
