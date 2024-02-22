@@ -38,8 +38,10 @@ pipeline {
      stage('Deploy to K8s') {
       steps{
         script {
-          sh "cat mainfests files/deployment.yml"
+          sh "cat mainfestfiles/deployment.yml"
           sh "minikube delete --all"
+          sh "su - abhi"
+          sh "minikube start"
           sh "kubectl cluster-info"
           sh "sleep 10"
           sh "kubectl create -f mainfestfiles/deployment.yml"
