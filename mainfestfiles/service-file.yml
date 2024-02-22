@@ -7,6 +7,6 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 8080
+  - port: 80
   selector:
     env: sandbox
